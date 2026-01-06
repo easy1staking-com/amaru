@@ -39,7 +39,7 @@ jobs:
   unused-dependencies:
     needs: changes
     if: ${{ needs.changes.outputs.dependencies == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: jaxxstorm/action-install-gh-release@v1.10.0
@@ -52,7 +52,7 @@ jobs:
   licenses-compatibility:
     needs: changes
     if: ${{ needs.changes.outputs.dependencies == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: jaxxstorm/action-install-gh-release@v1.10.0
@@ -63,7 +63,7 @@ jobs:
       - run: cargo deny-amaru
 
   license-headers:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: viperproject/check-license-header@v2
@@ -73,7 +73,7 @@ jobs:
           strict: false
 
   clippy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache/restore@v4
@@ -85,7 +85,7 @@ jobs:
       - run: cargo clippy-amaru
 
   formatting:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - run: cargo fmt-amaru
